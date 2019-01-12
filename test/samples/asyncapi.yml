@@ -1,0 +1,59 @@
+asyncapi: '1.2.0'
+info:
+    title: Streetlights API
+    version: '1.0.0'
+    description: |
+        The Smartylighting Streetlights API allows you
+        to remotely manage the city lights.
+    license:
+        name: Apache 2.0
+        url: 'https://www.apache.org/licenses/LICENSE-2.0'
+baseTopic: smartylighting.streetlights.1.0
+servers:
+    - url: test.mosquitto.org
+      scheme: mqtt
+      description: Test broker
+      variables:
+          port:
+              description: Secure connection (TLS) is available through port 8883.
+              default: '1883'
+              enum:
+                  - '1883'
+                  - '8883'
+topics:
+    event.lighting.measured:
+        x-service-name: streetlights
+        publish:
+            x-operation-id: lightMeasuredPublish
+            $ref: '#/components/messages/lightMeasured'
+        subscribe:
+            x-operation-id: lightMeasuredSubscribe
+            $ref: '#/components/messages/lightMeasured'
+    event.lighting.traced:
+        x-service-name: streetlights
+        publish:
+            x-operation-id: lightTracedPublish
+            $ref: '#/components/messages/lightMeasured'
+        subscribe:
+            x-operation-id: lightTracedSubscribe
+            $ref: '#/components/messages/lightMeasured'
+components:
+    messages:
+        lightMeasured:
+            summary: Inform about environmental lighting conditions for a particular streetlight.
+            payload:
+                $ref: "#/components/schemas/lightMeasuredPayload"
+    schemas:
+        lightMeasuredPayload:
+            type: object
+            properties:
+                lumens:
+                    type: integer
+                    minimum: 0
+                    description: Light intensity measured in lumens.
+                sentAt:
+                    $ref: "#/components/schemas/sentAt"
+        sentAt:
+            type: string
+            format: date-time
+            description: Date and time when the message was sent.
