@@ -7,8 +7,12 @@ const formats = converter.formats;
 
 const command = async (specFilePath, targetFormat) => {
 
-    if (targetFormat !== formats.YAML || targetFormat !== formats.JSON) {
-        console.log("throw `Invalid target format: ${targetFormat}`;");
+    if (targetFormat === true ) {
+        targetFormat = undefined;
+    }
+
+    if (targetFormat !== formats.YAML && targetFormat !== formats.JSON) {
+        console.error(`Invalid target format: ${targetFormat}`);
         process.exit(1);
     }
 
