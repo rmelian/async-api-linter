@@ -10,8 +10,8 @@ const command = async (specFile, cmd) => {
         console.log("Valid AsyncAPI document");
         process.exit(0);
     }catch (e) {
-        console.log("Non valid AsyncAPI document");
-        console.error(e.message);
+        // console.log("Non valid AsyncAPI document");
+        // console.error(e.message);
         process.exit(1);
     }
 

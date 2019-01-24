@@ -15,7 +15,7 @@ program
 
 program
     .command('validate <file-or-url>')
-    .description('validate AsyncAPI file/url. If valid, exit code is 0, otherwise exit code is 1.')
+    .description('validate AsyncAPI file/url. If valid, exit code is 0, otherwise exit code is 1')
     .action(validate.command);
 
 program
