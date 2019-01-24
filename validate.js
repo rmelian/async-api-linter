@@ -7,11 +7,11 @@ const validator = require('./lib/validator.js');
 const command = async (specFile, cmd) => {
     try {
         await validator.validate(specFile);
-        // console.log("valid");
+        console.log("Valid AsyncAPI document");
         process.exit(0);
     }catch (e) {
-        // console.error("NOT valid");
-        // console.error(e.message);
+        console.log("Non valid AsyncAPI document");
+        console.error(e.message);
         process.exit(1);
     }
 

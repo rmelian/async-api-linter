@@ -1,0 +1,117 @@
+{
+    "asyncapid": "1.2.0",
+    "info": {
+        "title": "Streetlights API",
+        "version": "1.0.0",
+        "description": "The Smartylighting Streetlights API allows you\nto remotely manage the city lights.\n",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+    "baseTopic": "smartylighting.streetlights.1.0",
+    "servers": [
+        {
+            "url": "test.mosquitto.org",
+            "scheme": "mqtt",
+            "description": "Test broker",
+            "variables": {
+                "port": {
+                    "description": "Secure connection (TLS) is available through port 8883.",
+                    "default": "1883",
+                    "enum": [
+                        "1883",
+                        "8883"
+                    ]
+                }
+            }
+        }
+    ],
+    "topics": {
+        "event.lighting.measured": {
+            "x-service-name": "streetlights",
+            "publish": {
+                "x-operation-id": "lightMeasuredPublish",
+                "summary": "Inform about environmental lighting conditions for a particular streetlight.",
+                "payload": {
+                    "type": "object",
+                    "properties": {
+                        "lumens": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "description": "Light intensity measured in lumens."
+                        },
+                        "sentAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Date and time when the message was sent."
+                        }
+                    }
+                }
+            },
+            "subscribe": {
+                "x-operation-id": "lightMeasuredSubscribe",
+                "summary": "Inform about environmental lighting conditions for a particular streetlight.",
+                "payload": {
+                    "type": "object",
+                    "properties": {
+                        "lumens": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "description": "Light intensity measured in lumens."
+                        },
+                        "sentAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Date and time when the message was sent."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "messages": {
+            "lightMeasured": {
+                "summary": "Inform about environmental lighting conditions for a particular streetlight.",
+                "payload": {
+                    "type": "object",
+                    "properties": {
+                        "lumens": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "description": "Light intensity measured in lumens."
+                        },
+                        "sentAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Date and time when the message was sent."
+                        }
+                    }
+                }
+            }
+        },
+        "schemas": {
+            "lightMeasuredPayload": {
+                "type": "object",
+                "properties": {
+                    "lumens": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "description": "Light intensity measured in lumens."
+                    },
+                    "sentAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Date and time when the message was sent."
+                    }
+                }
+            },
+            "sentAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Date and time when the message was sent."
+            }
+        }
+    }
+}
