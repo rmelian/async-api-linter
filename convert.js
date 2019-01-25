@@ -16,8 +16,13 @@ const command = async (specFilePath, targetFormat) => {
         process.exit(1);
     }
 
-    const document = await converter.convert(specFilePath, targetFormat);
-    console.log(document);
+    try {
+        const document = await converter.convert(specFilePath, targetFormat);
+        console.log(document);
+    }catch (e) {
+        console.error(e);
+    }
+
 };
 
 
