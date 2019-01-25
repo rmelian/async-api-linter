@@ -29,14 +29,6 @@ topics:
         subscribe:
             x-operation-id: lightMeasuredSubscribe
             $ref: '#/components/messages/lightMeasured'
-    event.lighting.traced:
-        x-service-name: streetlights
-        publish:
-            x-operation-id: lightTracedPublish
-            $ref: '#/components/messages/lightMeasured'
-        subscribe:
-            x-operation-id: lightTracedSubscribe
-            $ref: '#/components/messages/lightMeasured'
 components:
     messages:
         lightMeasured:
